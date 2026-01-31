@@ -6,24 +6,25 @@
   <title>Salvar a Giulia | Pesquisa PKS</title>
   <meta name="description" content="Campanha para iniciar pesquisa em Síndrome de Pallister-Killian (PKS) com organoides cerebrais. Meta: US$ 500.000." />
 
-  <!-- Social preview (trocar depois com foto oficial) -->
+  <!-- Social preview (a gente troca depois com a foto oficial) -->
   <meta property="og:title" content="Salvar a Giulia | Pesquisa PKS" />
   <meta property="og:description" content="Ajude a iniciar a pesquisa em PKS com organoides cerebrais. Meta: US$ 500.000." />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1600&q=80" />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1600&q=80" />
   <meta name="twitter:card" content="summary_large_image" />
 
   <style>
     :root{
+      /* base claro + cores um pouco mais fortes */
       --bg:#F2FBF7;
       --card:#FFFFFF;
       --ink:#0F1F26;
       --muted:#3F565E;
 
-      --blue:#0B2E6B;
-      --blue2:#1E63FF;
-      --green:#19B67A;
-      --gold:#D7AF4A;
+      --blue:#0B2E6B;    /* mais forte */
+      --blue2:#1E63FF;   /* mais vivo */
+      --green:#19B67A;   /* mais vivo */
+      --gold:#D7AF4A;    /* dourado mais marcado */
       --line:#D2E6DF;
 
       --radius:22px;
@@ -48,6 +49,16 @@
     a{color:inherit}
     .wrap{max-width:1120px;margin:0 auto;padding:18px}
     .muted{color:var(--muted)}
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(255,255,255,.94);
+      border:1px solid rgba(11,46,107,.14);
+      box-shadow: var(--shadow2);
+      font-size:13px;font-weight:950;color:var(--blue);
+      white-space:nowrap;
+    }
 
     /* Header */
     header{
@@ -104,7 +115,7 @@
       .controls{width:100%;justify-content:flex-start}
     }
 
-    /* HERO (mais claro / sem sensação de “escuro”) */
+    /* HERO full photo */
     .hero{
       margin-top:16px;
       border-radius:30px;
@@ -112,45 +123,47 @@
       border:1px solid rgba(255,255,255,.70);
       box-shadow: var(--shadow);
       position:relative;
-      min-height:520px;
+      min-height:540px;
       background:#0b1220;
     }
     .hero img{
       position:absolute;inset:0;
       width:100%;height:100%;
       object-fit:cover;
-      filter:saturate(1.08) contrast(1.05) brightness(1.02);
-      opacity:.98;
+      filter:saturate(1.06) contrast(1.05);
+      opacity:.96;
       transform:scale(1.02);
     }
-    /* overlay bem mais leve */
+
+    /* ✅ ALTERAÇÃO 1: overlay MAIS CLARO (menos “sombre”) */
     .hero::after{
       content:"";
       position:absolute;inset:0;
       background:
-        linear-gradient(90deg, rgba(11,18,32,.52) 0%, rgba(11,18,32,.30) 55%, rgba(11,18,32,.12) 100%),
-        linear-gradient(180deg, rgba(11,18,32,.10) 0%, rgba(11,18,32,.40) 100%);
+        linear-gradient(90deg, rgba(11,18,32,.62) 0%, rgba(11,18,32,.42) 50%, rgba(11,18,32,.18) 100%),
+        linear-gradient(180deg, rgba(11,18,32,.12) 0%, rgba(11,18,32,.48) 100%);
     }
+
     .heroContent{
       position:relative;
       padding:22px;
       display:grid;
-      grid-template-columns: 1.1fr .9fr;
+      grid-template-columns: 1.15fr .85fr;
       gap:16px;
       align-items:end;
-      min-height:520px;
+      min-height:540px;
     }
     @media (max-width:980px){
       .heroContent{grid-template-columns:1fr; align-items:start;}
     }
 
     .heroCard{
-      background:rgba(255,255,255,.94);
-      border:1px solid rgba(255,255,255,.72);
+      background:rgba(255,255,255,.93);
+      border:1px solid rgba(255,255,255,.70);
       border-radius:26px;
       padding:18px;
       box-shadow: var(--shadow2);
-      max-width:700px;
+      max-width:670px;
     }
     .heroKicker{margin:0 0 8px;color:var(--muted);font-size:13px;font-weight:1000}
     .heroTitle{
@@ -169,31 +182,40 @@
     .heroSub b{color:var(--blue)}
     .heroCTA{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
 
-    .pillRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-    .pill{
-      display:inline-flex;align-items:center;gap:8px;
-      padding:8px 12px;border-radius:999px;
-      background:rgba(255,255,255,.94);
-      border:1px solid rgba(11,46,107,.14);
-      box-shadow: var(--shadow2);
-      font-size:13px;font-weight:950;color:var(--blue);
-      white-space:nowrap;
+    /* RIGHT side: no badges on top of photo */
+    .heroRight{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+      align-items:flex-end;
+      justify-content:flex-end;
     }
-
-    /* hero right: só imagem extra opcional (sem nada em cima) */
-    .heroAside{
-      display:flex;flex-direction:column;gap:12px;align-items:flex-end;justify-content:flex-end;
-    }
-    .asideCard{
+    .impactBox{
       width:min(420px, 100%);
-      background:rgba(255,255,255,.90);
-      border:1px solid rgba(255,255,255,.72);
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(255,255,255,.70);
       border-radius:22px;
       padding:14px;
       box-shadow: var(--shadow2);
     }
-    .asideCard b{color:var(--blue)}
-    .asideCard p{margin:8px 0 0;color:var(--muted)}
+    .impactTop{
+      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:center;
+      color:var(--muted);font-size:13px;font-weight:1000;
+    }
+    .bar{
+      margin-top:10px;
+      height:12px;border-radius:999px;
+      background: rgba(11,46,107,.12);
+      overflow:hidden;
+      border:1px solid rgba(11,46,107,.10);
+    }
+    .bar > div{
+      height:100%;
+      width:0%;
+      background: linear-gradient(135deg, var(--blue2), var(--green));
+      border-radius:999px;
+    }
+    .impactNote{margin-top:10px;font-size:12px;color:var(--muted)}
 
     /* Sections */
     section{scroll-margin-top:92px}
@@ -220,7 +242,7 @@
     @media (max-width:980px){ .grid2{grid-template-columns:1fr} }
 
     .card{
-      background: rgba(255,255,255,.94);
+      background: rgba(255,255,255,.93);
       border:1px solid var(--line);
       border-radius:26px;
       padding:18px;
@@ -228,6 +250,7 @@
       position:relative;
       overflow:hidden;
     }
+    /* pequeno detalhe de cor mais forte */
     .card::before{
       content:"";
       position:absolute;left:0;top:0;bottom:0;width:6px;
@@ -240,53 +263,79 @@
     .list{margin:12px 0 0;padding-left:18px;color:var(--muted)}
     .list li{margin:8px 0}
 
-    /* Progress section (fora do hero) */
-    .progressWrap{
-      margin-top:16px;
-      background: rgba(255,255,255,.94);
-      border:1px solid var(--line);
-      border-radius:24px;
-      padding:16px;
+    /* Story blocks */
+    .storyLead{
+      background: linear-gradient(135deg, rgba(30,99,255,.10), rgba(215,175,74,.12));
+      border:1px solid rgba(11,46,107,.10);
+      border-radius:22px;
+      padding:14px;
+      color:var(--muted);
       box-shadow: var(--shadow2);
     }
-    .progressTop{
-      display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between;
-      color:var(--muted);font-size:13px;font-weight:1000;
+    .storyLead b{color:var(--blue)}
+    .timeline{
+      margin-top:14px;
+      border-left:3px solid rgba(25,182,122,.45);
+      padding-left:14px;
+      display:flex;flex-direction:column;gap:12px;
     }
-    .bar{
-      margin-top:10px;
-      height:12px;border-radius:999px;
-      background: rgba(11,46,107,.12);
-      overflow:hidden;
-      border:1px solid rgba(11,46,107,.10);
+    .event{
+      background:rgba(255,255,255,.94);
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px 12px;
+      box-shadow: var(--shadow2);
     }
-    .bar > div{
-      height:100%;
-      width:0%;
-      background: linear-gradient(135deg, var(--blue2), var(--green));
-      border-radius:999px;
-    }
-    .progressNote{margin:10px 0 0;font-size:12px;color:var(--muted)}
+    .event b{color:var(--blue)}
+    .event .meta{font-size:12px;color:var(--muted);font-weight:1000;margin-bottom:6px}
 
-    /* Video */
-    .videoWrap{
-      position:relative;
-      width:100%;
-      padding-top:56.25%;
+    /* ✅ bloco “A luta contra a PKS” (novo, mas sem mudar layout) */
+    .fightBox{
+      margin-top:14px;
+      background: rgba(255,255,255,.93);
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:14px;
+      box-shadow: var(--shadow2);
+    }
+    .fightBox h3{margin:0 0 8px;color:var(--blue);font-weight:1200}
+    .fightBox p{margin:0;color:var(--muted)}
+    .fightBox .mini{margin-top:10px;font-size:13px;color:var(--muted)}
+
+    /* Photo mosaic */
+    .photos{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:12px;
+      margin-top:12px;
+    }
+    @media (max-width:980px){ .photos{grid-template-columns:1fr} }
+
+    .photoBig{
       border-radius:22px;
       overflow:hidden;
       border:1px solid var(--line);
       box-shadow: var(--shadow2);
-      background:#000;
-      margin-top:12px;
+      min-height:280px;
+      background:#fff;
     }
-    .videoWrap iframe{
-      position:absolute;inset:0;
-      width:100%;height:100%;
-      border:0;
+    .photoBig img{width:100%;height:100%;object-fit:cover;display:block}
+    .photoGrid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
     }
+    .photoSmall{
+      border-radius:18px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow2);
+      min-height:134px;
+      background:#fff;
+    }
+    .photoSmall img{width:100%;height:100%;object-fit:cover;display:block}
 
-    /* campaigns */
+    /* campaigns / blocks */
     .campaigns{
       display:grid;
       grid-template-columns:repeat(3,1fr);
@@ -296,7 +345,7 @@
     @media (max-width:980px){ .campaigns{grid-template-columns:1fr} }
 
     .camp{
-      background: rgba(255,255,255,.94);
+      background: rgba(255,255,255,.93);
       border:1px solid var(--line);
       border-radius:22px;
       overflow:hidden;
@@ -311,6 +360,23 @@
     .campTop b{color:var(--blue);font-weight:1200}
     .campBody{padding:14px;color:var(--muted)}
     .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+
+    /* video */
+    .videoWrap{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+      border-radius:22px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow2);
+      background:#000;
+    }
+    .videoWrap iframe{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      border:0;
+    }
 
     footer{
       margin-top:26px;
@@ -367,7 +433,8 @@
 
     <nav aria-label="Navegação">
       <a href="#inicio">Início</a>
-      <a href="#luta">A luta contra a PKS</a>
+      <a href="#historia-video">Nossa história + Vídeo</a>
+      <a href="#diagnostico">Diagnóstico</a>
       <a href="#pesquisa">Pesquisa</a>
       <a href="#campanhas">Campanhas</a>
       <a href="#doacoes">Doações</a>
@@ -385,6 +452,7 @@
 
   <!-- HERO -->
   <section id="inicio" class="hero" aria-label="Capa">
+    <!-- PLACEHOLDER: depois trocamos pela foto da Giulia -->
     <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=2000&q=80" alt="Foto de capa (placeholder)">
 
     <div class="heroContent">
@@ -392,81 +460,122 @@
         <p class="heroKicker">Uma campanha real. Uma corrida contra o tempo.</p>
         <h1 class="heroTitle">Salvar a Giulia</h1>
         <p class="heroSub">
-          Giulia tem <b>Síndrome de Pallister-Killian (PKS)</b>. Hoje não existe um tratamento curativo.
-          Mas existe um caminho concreto: iniciar uma <b>pesquisa com organoides cerebrais</b> assim que levantarmos o orçamento inicial.
+          Nossa filha tem <b>Síndrome de Pallister-Killian (PKS)</b>.
+          Hoje, não existe um tratamento curativo — mas existe uma oportunidade concreta:
+          iniciar uma <b>pesquisa com organoides cerebrais</b> assim que levantarmos o orçamento inicial.
         </p>
 
         <div class="heroCTA">
           <button class="btn btnPrimary" onclick="scrollTo('doacoes')">Doar agora</button>
-          <button class="btn btnBlue" onclick="scrollTo('luta')">Entender a luta</button>
+          <button class="btn btnBlue" onclick="scrollTo('historia-video')">Ver nossa história</button>
         </div>
 
-        <div class="pillRow">
+        <div style="margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;">
           <span class="pill">🧠 Organoides cerebrais</span>
-          <span class="pill">🎯 Meta: US$ 500.000</span>
           <span class="pill">👶 Fase inicial: 3 crianças</span>
+          <span class="pill">🎯 Meta: US$ 500.000</span>
         </div>
       </div>
 
-      <div class="heroAside">
-        <div class="asideCard">
-          <b>Por que isso importa?</b>
-          <p>
-            Porque sem pesquisa, nada começa. E sem começar, o futuro da Giulia e de outras crianças fica parado.
-          </p>
-          <div class="row">
-            <button class="btn btnBlue" onclick="scrollTo('doacoes')">Doar</button>
-            <button class="btn" onclick="scrollTo('luta')">Ler mais</button>
+      <!-- lado direito -->
+      <div class="heroRight">
+        <div class="impactBox" aria-label="Progresso">
+          <div class="impactTop">
+            <div><b>Arrecadado:</b> <span id="raisedText">—</span></div>
+            <div><b>Meta:</b> <span id="goalText">—</span></div>
+            <div><b>Progresso:</b> <span id="pctText">—</span></div>
+          </div>
+          <div class="bar" aria-hidden="true"><div id="barFill"></div></div>
+          <div class="impactNote">
+            Transparência: atualize no código (VALOR_ARRECADADO_USD).
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- PROGRESSO (AGORA FORA DO HERO) -->
-  <section aria-label="Progresso" class="progressWrap">
-    <div class="progressTop">
-      <div><b>Arrecadado:</b> <span id="raisedText">—</span></div>
-      <div><b>Meta:</b> <span id="goalText">—</span></div>
-      <div><b>Progresso:</b> <span id="pctText">—</span></div>
-    </div>
-    <div class="bar" aria-hidden="true"><div id="barFill"></div></div>
-    <div class="progressNote">
-      Transparência: atualize no código (VALOR_ARRECADADO_USD).
-    </div>
-  </section>
-
-  <!-- A LUTA (VIDEO + EXPLICAÇÃO DA DOENÇA/DIAGNÓSTICO JUNTOS) -->
-  <section id="luta">
-    <h2 class="sectionTitle">A luta contra a PKS</h2>
+  <!-- NOSSA HISTÓRIA + VÍDEO JUNTOS -->
+  <section id="historia-video">
+    <h2 class="sectionTitle">Nossa história (e o vídeo)</h2>
     <p class="sectionSub">
-      A Síndrome de Pallister-Killian é rara e, por ser frequentemente em mosaico, pode demorar para ser detectada.
-      A luta é diária: desenvolvimento motor, comunicação, autonomia — e a busca por um caminho científico real.
+      Queremos que você entenda a verdade sem “drama forçado”: por que estamos correndo,
+      e por que essa pesquisa pode mudar o futuro da Giulia e de outras crianças.
     </p>
 
-    <div class="grid2">
+    <div class="storyLead">
+      <b>Em poucas palavras:</b> Giulia nasceu, foi para a UTI e saímos do hospital com um diagnóstico de <b>dolichocolon</b>.
+      Depois, por meses, parecia que tudo estava bem. Mas por volta dos <b>4 meses</b>, algo mudou — e começou nossa busca.
+    </div>
+
+    <!-- ✅ ALTERAÇÃO 2: explicação “A luta contra a PKS” aqui, antes do vídeo -->
+    <div class="fightBox" aria-label="A luta contra a PKS">
+      <h3>A luta contra a Síndrome de Pallister-Killian (PKS)</h3>
+      <p>
+        PKS é uma condição genética rara do neurodesenvolvimento, geralmente em <b>mosaico</b>.
+        Isso significa que a alteração pode aparecer em alguns tecidos e não em outros — por isso o diagnóstico pode demorar.
+        Hoje, o cuidado é principalmente de <b>suporte</b> (fisioterapia, estimulação e acompanhamento).
+      </p>
+      <div class="mini">
+        <b>Por que estamos correndo?</b> Porque sem pesquisa, nada começa — e a pesquisa precisa de financiamento para existir.
+      </div>
+    </div>
+
+    <!-- Fotos (mosaico) -->
+    <div class="photos" aria-label="Fotos">
+      <div class="photoBig">
+        <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1600&q=80" alt="Foto principal (placeholder)">
+      </div>
+      <div class="photoGrid">
+        <div class="photoSmall">
+          <img src="https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80" alt="Foto (placeholder)">
+        </div>
+        <div class="photoSmall">
+          <img src="https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?auto=format&fit=crop&w=1200&q=80" alt="Foto (placeholder)">
+        </div>
+        <div class="photoSmall">
+          <img src="https://images.unsplash.com/photo-1520975958225-1c83d24b49c3?auto=format&fit=crop&w=1200&q=80" alt="Foto (placeholder)">
+        </div>
+        <div class="photoSmall">
+          <img src="https://images.unsplash.com/photo-1517232115160-ff93364542dd?auto=format&fit=crop&w=1200&q=80" alt="Foto (placeholder)">
+        </div>
+      </div>
+    </div>
+
+    <div class="grid2" style="margin-top:16px;">
       <div class="card">
         <div class="cardInner">
-          <h3>O que é o PKS (explicação simples e clara)</h3>
+          <h3>O que aconteceu com a Giulia</h3>
           <p>
-            O PKS é uma condição genética rara do neurodesenvolvimento. Muitas vezes acontece em <b>mosaico</b>,
-            ou seja: algumas células têm a alteração e outras não.
+            Depois do começo difícil, ela crescia bem. Mas então veio a <b>hipotonia</b>:
+            dificuldade para sustentar a cabeça, atraso motor e sinais que nos fizeram correr atrás de respostas.
           </p>
-          <ul class="list">
-            <li><b>Mosaico</b> = pode aparecer em um tecido e não em outro</li>
-            <li>Por isso exames comuns podem vir <b>normais</b> por um tempo</li>
-            <li>Hoje o tratamento é principalmente de <b>suporte</b> (fisioterapia/estimulação)</li>
-          </ul>
 
-          <h4 style="margin-top:14px;">E a Giulia?</h4>
-          <p>
-            Depois de um início difícil na UTI, parecia que tudo estava bem. Por volta dos <b>4 meses</b>,
-            veio a <b>hipotonia</b> e começou uma investigação longa até chegarmos ao diagnóstico.
-          </p>
+          <div class="timeline">
+            <div class="event">
+              <div class="meta">Nascimento</div>
+              <b>UTI</b>, 10 dias no hospital e diagnóstico inicial de <b>dolichocolon</b>.
+            </div>
+            <div class="event">
+              <div class="meta">Primeiros meses</div>
+              Crescimento parecia dentro do esperado.
+            </div>
+            <div class="event">
+              <div class="meta">Por volta dos 4 meses</div>
+              <b>Hipotonia</b> e início de uma investigação profunda.
+            </div>
+            <div class="event">
+              <div class="meta">A busca</div>
+              IRM, EEG, avaliação ocular, exames metabólicos e genéticos.
+            </div>
+            <div class="event">
+              <div class="meta">Resposta</div>
+              Descobrimos o <b>PKS</b> (mosaico / i12p).
+            </div>
+          </div>
 
           <div class="row">
             <button class="btn btnPrimary" onclick="scrollTo('doacoes')">Ajudar agora</button>
-            <button class="btn" onclick="scrollTo('pesquisa')">Ver a pesquisa</button>
+            <button class="btn" onclick="scrollTo('diagnostico')">Entender o diagnóstico</button>
           </div>
         </div>
       </div>
@@ -475,17 +584,19 @@
         <div class="cardInner">
           <h3>Assista ao vídeo</h3>
           <p>
-            O vídeo mostra a Giulia e explica por que estamos pedindo ajuda para iniciar a pesquisa.
+            O vídeo é o lugar onde a emoção acontece de verdade, porque você vê a Giulia e entende por que pedimos ajuda.
           </p>
-          <div class="videoWrap">
+
+          <div class="videoWrap" style="margin-top:12px;">
             <iframe
               src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
               title="Vídeo da campanha"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowfullscreen></iframe>
           </div>
+
           <p class="muted" style="margin-top:10px;font-size:13px;">
-            Depois você troca <b>VIDEO_ID_AQUI</b> pelo ID real do YouTube (quando a gente for colocar oficial).
+            Depois, você só troca <b>VIDEO_ID_AQUI</b> pelo ID real do vídeo do YouTube.
           </p>
 
           <div class="row">
@@ -497,40 +608,85 @@
     </div>
   </section>
 
-  <!-- PESQUISA -->
-  <section id="pesquisa">
-    <h2 class="sectionTitle">Pesquisa com organoides cerebrais</h2>
+  <!-- DIAGNÓSTICO (mais detalhado) -->
+  <section id="diagnostico">
+    <h2 class="sectionTitle">Diagnóstico: Pallister-Killian (PKS)</h2>
     <p class="sectionSub">
-      Organoides são “mini-modelos” criados em laboratório a partir de células do paciente.
-      Eles permitem estudar mecanismos e testar hipóteses com mais segurança, antes de pensar em aplicações clínicas.
+      PKS é uma condição genética rara do neurodesenvolvimento, geralmente em <b>mosaico</b>.
+      Isso significa que a alteração pode aparecer em alguns tecidos e não em outros —
+      e por isso o diagnóstico pode demorar.
     </p>
 
     <div class="grid2">
       <div class="card">
         <div class="cardInner">
-          <h3>Como funciona</h3>
+          <h3>O que é “mosaico” (explicação simples)</h3>
+          <p>
+            Imagine que o corpo é feito de muitas células. No mosaico, <b>nem todas as células têm a mesma alteração</b>.
+            Algumas podem estar normais e outras não — e isso pode variar conforme o tecido (sangue, pele, mucosa, etc.).
+          </p>
           <ul class="list">
-            <li><b>1)</b> Coleta simples (ex: biópsia de pele)</li>
-            <li><b>2)</b> Reprogramação celular no laboratório</li>
-            <li><b>3)</b> Formação de organoides cerebrais</li>
-            <li><b>4)</b> Análise e testes de hipóteses</li>
-            <li><b>5)</b> Resultados para orientar os próximos passos</li>
+            <li><b>Por isso</b> exames comuns podem vir normais</li>
+            <li>A apresentação muda muito de criança para criança</li>
+            <li>O tratamento atual é principalmente de <b>suporte</b> (fisio, estimulação, etc.)</li>
           </ul>
         </div>
       </div>
 
       <div class="card">
         <div class="cardInner">
-          <h3>O que essa fase entrega</h3>
+          <h3>Por que a gente está correndo?</h3>
+          <p>
+            Porque em doenças raras, o tempo importa. Quanto mais cedo você entende os mecanismos,
+            mais cedo pode testar caminhos reais. E sem financiamento, a pesquisa não começa.
+          </p>
           <ul class="list">
-            <li>Modelos derivados do paciente para estudar o PKS</li>
-            <li>Triagem inicial de estratégias promissoras</li>
-            <li>Base científica para próximas etapas</li>
+            <li>Não é “milagre”: é ciência aplicada</li>
+            <li>Sem promessa falsa — com um plano sério</li>
+            <li>Campanha = ponte entre famílias e laboratório</li>
           </ul>
-          <div class="row">
-            <button class="btn btnPrimary" onclick="scrollTo('doacoes')">Doar agora</button>
-            <button class="btn" onclick="copyLink()">Copiar link</button>
-          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PESQUISA (mais detalhada) -->
+  <section id="pesquisa">
+    <h2 class="sectionTitle">Pesquisa com organoides cerebrais (explicado melhor)</h2>
+    <p class="sectionSub">
+      Organoides são “mini-modelos” feitos em laboratório a partir de células do paciente.
+      Eles ajudam pesquisadores a observar como o cérebro se desenvolve e reage,
+      permitindo comparar hipóteses com mais segurança.
+    </p>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="cardInner">
+          <h3>Como funciona (passo a passo)</h3>
+          <ul class="list">
+            <li><b>1)</b> Coleta simples (ex: <b>biópsia de pele</b>)</li>
+            <li><b>2)</b> Reprogramação das células em laboratório</li>
+            <li><b>3)</b> Formação de <b>organoides cerebrais</b> (modelos)</li>
+            <li><b>4)</b> Observação de mecanismos e testes de hipóteses</li>
+            <li><b>5)</b> Resultados que direcionam próximos passos</li>
+          </ul>
+          <p class="muted" style="margin-top:10px;font-size:13px;">
+            Isso não é tratamento imediato — é a fase que permite achar caminhos reais e seguros.
+          </p>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="cardInner">
+          <h3>O que essa fase entrega (objetivos claros)</h3>
+          <ul class="list">
+            <li>Modelos derivados do paciente para estudar mecanismos do PKS</li>
+            <li>Triagem inicial de estratégias mais promissoras</li>
+            <li>Base científica para projetos maiores e próximos estudos</li>
+          </ul>
+          <p class="muted" style="margin-top:10px;font-size:13px;">
+            Não existe garantia de resultado, mas existe um caminho estruturado pronto para começar.
+          </p>
         </div>
       </div>
     </div>
@@ -538,9 +694,10 @@
 
   <!-- CAMPANHAS -->
   <section id="campanhas">
-    <h2 class="sectionTitle">Campanhas</h2>
+    <h2 class="sectionTitle">Campanhas (rifas e ações)</h2>
     <p class="sectionSub">
-      Aqui colocamos rifas e ações para ampliar o alcance. (Links oficiais depois, quando layout estiver aprovado.)
+      Além das doações diretas, fazemos ações para ampliar o alcance e envolver mais pessoas.
+      (Aqui ficam os cards prontos — colocamos links oficiais depois.)
     </p>
 
     <div class="campaigns">
@@ -550,7 +707,7 @@
           <span class="muted">ativa</span>
         </div>
         <div class="campBody">
-          Descrição curta (prêmio, data, etc.).
+          Descrição curta (prêmio, data do sorteio, etc.).
           <div class="row">
             <button class="btn btnPrimary" onclick="openLink(RIFA1_LINK)">Participar</button>
             <button class="btn" onclick="openLink(RIFA1_REGRAS)">Regras</button>
@@ -564,7 +721,7 @@
           <span class="muted">em breve</span>
         </div>
         <div class="campBody">
-          Campanha com parceiros.
+          Campanha com parceiros (ex: % de vendas revertido).
           <div class="row">
             <button class="btn btnPrimary" onclick="openLink(ACAO_LINK)">Ver ação</button>
           </div>
@@ -573,13 +730,13 @@
 
       <div class="camp">
         <div class="campTop">
-          <b>📣 Compartilhar</b>
+          <b>📣 Compartilhamento</b>
           <span class="muted">sempre</span>
         </div>
         <div class="campBody">
-          Compartilhar já ajuda muito.
+          Se você não puder doar agora, compartilhar ajuda muito.
           <div class="row">
-            <button class="btn btnBlue" onclick="shareWhatsApp()">WhatsApp</button>
+            <button class="btn btnBlue" onclick="shareWhatsApp()">Compartilhar</button>
             <button class="btn" onclick="copyLink()">Copiar link</button>
           </div>
         </div>
@@ -595,6 +752,7 @@
     </p>
 
     <div class="campaigns">
+      <!-- PIX -->
       <div class="camp">
         <div class="campTop">
           <b>🇧🇷 PIX (Brasil)</b>
@@ -603,35 +761,48 @@
         <div class="campBody">
           <div class="muted">Chave PIX:</div>
           <div style="font-weight:1200;font-size:16px;margin-top:6px;" id="pixKey">SUA_CHAVE_PIX_AQUI</div>
+
           <div class="row">
             <button class="btn btnPrimary" onclick="copyPix()">Copiar chave PIX</button>
             <button class="btn" onclick="openLink(PIX_LINK_QR)">Abrir QR/Link</button>
           </div>
+
+          <div class="muted" style="margin-top:10px;font-size:13px;">
+            (Depois colocamos sua chave oficial e seu QR/Link.)
+          </div>
         </div>
       </div>
 
+      <!-- PAYPAL -->
       <div class="camp">
         <div class="campTop">
           <b>🌍 PayPal</b>
           <span class="muted">internacional</span>
         </div>
         <div class="campBody">
-          Doação via PayPal.
+          Doação via PayPal (cartão ou saldo).
           <div class="row">
             <button class="btn btnPrimary" onclick="openLink(PAYPAL_LINK)">Doar no PayPal</button>
+          </div>
+          <div class="muted" style="margin-top:10px;font-size:13px;">
+            (Depois colocamos seu link PayPal oficial aqui.)
           </div>
         </div>
       </div>
 
+      <!-- GOFUNDME -->
       <div class="camp">
         <div class="campTop">
           <b>💛 GoFundMe</b>
-          <span class="muted">principal</span>
+          <span class="muted">campanha principal</span>
         </div>
         <div class="campBody">
-          Doação via GoFundMe.
+          Se preferir, doe pela campanha no GoFundMe.
           <div class="row">
             <button class="btn btnPrimary" onclick="openLink(GOFUNDME_LINK)">Doar no GoFundMe</button>
+          </div>
+          <div class="muted" style="margin-top:10px;font-size:13px;">
+            (Depois colocamos o link oficial aqui.)
           </div>
         </div>
       </div>
@@ -640,7 +811,9 @@
     <div class="card" style="margin-top:16px;">
       <div class="cardInner">
         <h3>Não pode doar agora?</h3>
-        <p>Compartilhe com <b>5 pessoas</b>. Uma campanha ganha força quando muitas pessoas veem.</p>
+        <p>
+          Compartilhe com <b>5 pessoas</b>. Uma campanha ganha força quando muitas pessoas veem.
+        </p>
         <div class="row" style="margin-top:12px;">
           <button class="btn btnBlue" onclick="shareWhatsApp()">Compartilhar no WhatsApp</button>
           <button class="btn" onclick="copyLink()">Copiar link</button>
@@ -665,7 +838,7 @@
 <div class="donateBar" role="region" aria-label="Barra de doação">
   <div class="donateBarInner">
     <div>
-      <b>Meta:</b> <span>US$ 500.000</span> · <span style="color:rgba(255,255,255,.78)">Pesquisa pronta para iniciar</span>
+      <b>Meta:</b> <span>US$ 500.000</span> · <b>PKS</b> · <span style="color:rgba(255,255,255,.78)">Pesquisa pronta para iniciar</span>
     </div>
     <div class="donateBarBtns">
       <button class="btnBar" onclick="scrollTo('doacoes')">Doar agora</button>
@@ -676,9 +849,11 @@
 </div>
 
 <script>
+  // ==============================
   // CONFIG (links oficiais depois)
+  // ==============================
   const GOAL_USD = 500000;
-  const VALOR_ARRECADADO_USD = 0; // <-- mudar depois
+  const VALOR_ARRECADADO_USD = 0; // <-- depois você muda aqui
 
   const PIX_LINK_QR   = "#";
   const PAYPAL_LINK   = "#";
@@ -690,6 +865,9 @@
 
   const SHARE_TEXT = "Ajude a salvar a Giulia e iniciar a pesquisa em PKS. Link:";
 
+  // ==============================
+  // FUNÇÕES
+  // ==============================
   function scrollTo(id){
     const el = document.getElementById(id);
     if(el) el.scrollIntoView({behavior:"smooth"});
@@ -752,6 +930,7 @@
     document.getElementById("barFill").style.width    = (isFinite(pct) ? pct : 0) + "%";
   }
 
+  // INIT
   document.getElementById("year").textContent = new Date().getFullYear();
   updateProgress();
 </script>
