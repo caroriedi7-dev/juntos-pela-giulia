@@ -15,16 +15,15 @@
 
   <style>
     :root{
-      /* base claro + cores um pouco mais fortes */
       --bg:#F2FBF7;
       --card:#FFFFFF;
       --ink:#0F1F26;
       --muted:#3F565E;
 
-      --blue:#0B2E6B;    /* mais forte */
-      --blue2:#1E63FF;   /* mais vivo */
-      --green:#19B67A;   /* mais vivo */
-      --gold:#D7AF4A;    /* dourado mais marcado */
+      --blue:#0B2E6B;
+      --blue2:#1E63FF;
+      --green:#19B67A;
+      --gold:#D7AF4A;
       --line:#D2E6DF;
 
       --radius:22px;
@@ -131,17 +130,17 @@
       width:100%;height:100%;
       object-fit:cover;
       filter:saturate(1.06) contrast(1.05);
-      opacity:.96;
+      opacity:1; /* ✅ mais clara */
       transform:scale(1.02);
     }
 
-    /* ✅ ALTERAÇÃO 1: overlay MAIS CLARO (menos “sombre”) */
+    /* ✅ ALTERAÇÃO 1: overlay MUITO mais leve */
     .hero::after{
       content:"";
       position:absolute;inset:0;
       background:
-        linear-gradient(90deg, rgba(11,18,32,.62) 0%, rgba(11,18,32,.42) 50%, rgba(11,18,32,.18) 100%),
-        linear-gradient(180deg, rgba(11,18,32,.12) 0%, rgba(11,18,32,.48) 100%);
+        linear-gradient(90deg, rgba(11,18,32,.42) 0%, rgba(11,18,32,.22) 55%, rgba(11,18,32,.10) 100%),
+        linear-gradient(180deg, rgba(11,18,32,.06) 0%, rgba(11,18,32,.22) 100%);
     }
 
     .heroContent{
@@ -158,8 +157,8 @@
     }
 
     .heroCard{
-      background:rgba(255,255,255,.93);
-      border:1px solid rgba(255,255,255,.70);
+      background:rgba(255,255,255,.96); /* ✅ um pouco mais sólida (menos “escuro” atrás) */
+      border:1px solid rgba(255,255,255,.75);
       border-radius:26px;
       padding:18px;
       box-shadow: var(--shadow2);
@@ -182,7 +181,6 @@
     .heroSub b{color:var(--blue)}
     .heroCTA{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
 
-    /* RIGHT side: no badges on top of photo */
     .heroRight{
       display:flex;
       flex-direction:column;
@@ -192,8 +190,8 @@
     }
     .impactBox{
       width:min(420px, 100%);
-      background:rgba(255,255,255,.92);
-      border:1px solid rgba(255,255,255,.70);
+      background:rgba(255,255,255,.95);
+      border:1px solid rgba(255,255,255,.75);
       border-radius:22px;
       padding:14px;
       box-shadow: var(--shadow2);
@@ -250,7 +248,6 @@
       position:relative;
       overflow:hidden;
     }
-    /* pequeno detalhe de cor mais forte */
     .card::before{
       content:"";
       position:absolute;left:0;top:0;bottom:0;width:6px;
@@ -289,19 +286,6 @@
     .event b{color:var(--blue)}
     .event .meta{font-size:12px;color:var(--muted);font-weight:1000;margin-bottom:6px}
 
-    /* ✅ bloco “A luta contra a PKS” (novo, mas sem mudar layout) */
-    .fightBox{
-      margin-top:14px;
-      background: rgba(255,255,255,.93);
-      border:1px solid var(--line);
-      border-radius:22px;
-      padding:14px;
-      box-shadow: var(--shadow2);
-    }
-    .fightBox h3{margin:0 0 8px;color:var(--blue);font-weight:1200}
-    .fightBox p{margin:0;color:var(--muted)}
-    .fightBox .mini{margin-top:10px;font-size:13px;color:var(--muted)}
-
     /* Photo mosaic */
     .photos{
       display:grid;
@@ -335,6 +319,72 @@
     }
     .photoSmall img{width:100%;height:100%;object-fit:cover;display:block}
 
+    /* ✅ ALTERAÇÃO 2: bloco “vídeo grande + texto lado” estilo Julinha */
+    .videoHero{
+      margin-top:16px;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width:980px){ .videoHero{grid-template-columns:1fr} }
+
+    .videoBig{
+      background:#000;
+      border-radius:26px;
+      overflow:hidden;
+      border:1px solid var(--line);
+      box-shadow: var(--shadow);
+      position:relative;
+    }
+    .videoBig::after{
+      content:"";
+      position:absolute;inset:0;
+      pointer-events:none;
+      background: linear-gradient(180deg, rgba(0,0,0,.18) 0%, rgba(0,0,0,.28) 100%);
+    }
+    .videoFrame{
+      position:relative;
+      width:100%;
+      padding-top:56.25%;
+    }
+    .videoFrame iframe{
+      position:absolute;inset:0;
+      width:100%;height:100%;
+      border:0;
+    }
+    .videoCaption{
+      position:absolute;
+      left:14px;right:14px;bottom:14px;
+      background: rgba(255,255,255,.92);
+      border:1px solid rgba(255,255,255,.75);
+      border-radius:18px;
+      padding:12px 12px;
+      box-shadow: var(--shadow2);
+    }
+    .videoCaption b{color:var(--blue)}
+    .videoCaption .mini{margin-top:6px;font-size:13px;color:var(--muted)}
+
+    .textSide{
+      background: rgba(255,255,255,.93);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:18px;
+      box-shadow: var(--shadow2);
+      position:relative;
+      overflow:hidden;
+    }
+    .textSide::before{
+      content:"";
+      position:absolute;left:0;top:0;bottom:0;width:6px;
+      background: linear-gradient(180deg, var(--gold), var(--green));
+      opacity:.9;
+    }
+    .textSideInner{position:relative}
+    .textSide h3{margin:0 0 10px;color:var(--blue);font-weight:1200}
+    .textSide p{margin:0;color:var(--muted)}
+    .textSide .list{margin-top:10px}
+
     /* campaigns / blocks */
     .campaigns{
       display:grid;
@@ -360,23 +410,6 @@
     .campTop b{color:var(--blue);font-weight:1200}
     .campBody{padding:14px;color:var(--muted)}
     .row{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
-
-    /* video */
-    .videoWrap{
-      position:relative;
-      width:100%;
-      padding-top:56.25%;
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid var(--line);
-      box-shadow: var(--shadow2);
-      background:#000;
-    }
-    .videoWrap iframe{
-      position:absolute;inset:0;
-      width:100%;height:100%;
-      border:0;
-    }
 
     footer{
       margin-top:26px;
@@ -452,7 +485,6 @@
 
   <!-- HERO -->
   <section id="inicio" class="hero" aria-label="Capa">
-    <!-- PLACEHOLDER: depois trocamos pela foto da Giulia -->
     <img src="https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=2000&q=80" alt="Foto de capa (placeholder)">
 
     <div class="heroContent">
@@ -477,7 +509,6 @@
         </div>
       </div>
 
-      <!-- lado direito -->
       <div class="heroRight">
         <div class="impactBox" aria-label="Progresso">
           <div class="impactTop">
@@ -494,9 +525,9 @@
     </div>
   </section>
 
-  <!-- NOSSA HISTÓRIA + VÍDEO JUNTOS -->
+  <!-- NOSSA HISTÓRIA + VÍDEO (formato “Julinha”) -->
   <section id="historia-video">
-    <h2 class="sectionTitle">Nossa história (e o vídeo)</h2>
+    <h2 class="sectionTitle">Nossa história (e a luta contra a PKS)</h2>
     <p class="sectionSub">
       Queremos que você entenda a verdade sem “drama forçado”: por que estamos correndo,
       e por que essa pesquisa pode mudar o futuro da Giulia e de outras crianças.
@@ -507,20 +538,7 @@
       Depois, por meses, parecia que tudo estava bem. Mas por volta dos <b>4 meses</b>, algo mudou — e começou nossa busca.
     </div>
 
-    <!-- ✅ ALTERAÇÃO 2: explicação “A luta contra a PKS” aqui, antes do vídeo -->
-    <div class="fightBox" aria-label="A luta contra a PKS">
-      <h3>A luta contra a Síndrome de Pallister-Killian (PKS)</h3>
-      <p>
-        PKS é uma condição genética rara do neurodesenvolvimento, geralmente em <b>mosaico</b>.
-        Isso significa que a alteração pode aparecer em alguns tecidos e não em outros — por isso o diagnóstico pode demorar.
-        Hoje, o cuidado é principalmente de <b>suporte</b> (fisioterapia, estimulação e acompanhamento).
-      </p>
-      <div class="mini">
-        <b>Por que estamos correndo?</b> Porque sem pesquisa, nada começa — e a pesquisa precisa de financiamento para existir.
-      </div>
-    </div>
-
-    <!-- Fotos (mosaico) -->
+    <!-- Fotos -->
     <div class="photos" aria-label="Fotos">
       <div class="photoBig">
         <img src="https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=1600&q=80" alt="Foto principal (placeholder)">
@@ -541,6 +559,53 @@
       </div>
     </div>
 
+    <!-- ✅ VÍDEO GRANDE + TEXTO AO LADO -->
+    <div class="videoHero" aria-label="Vídeo e explicação">
+      <div class="videoBig">
+        <div class="videoFrame">
+          <iframe
+            src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
+            title="Vídeo da campanha"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        </div>
+
+        <div class="videoCaption">
+          <b>Assista e entenda por que pedimos ajuda.</b>
+          <div class="mini">
+            Troque <b>VIDEO_ID_AQUI</b> pelo ID real do YouTube.
+          </div>
+        </div>
+      </div>
+
+      <div class="textSide">
+        <div class="textSideInner">
+          <h3>A luta contra a Síndrome de Pallister-Killian (PKS)</h3>
+          <p>
+            PKS é uma condição genética rara do neurodesenvolvimento, geralmente em <b>mosaico</b>.
+            Isso significa que a alteração pode aparecer em alguns tecidos e não em outros — por isso exames podem vir normais e o diagnóstico pode demorar.
+            Hoje, o cuidado é principalmente de <b>suporte</b> (fisioterapia, estimulação, acompanhamento).
+          </p>
+
+          <ul class="list">
+            <li><b>O que mudou aos 4 meses:</b> hipotonia e atraso motor</li>
+            <li><b>O que fizemos:</b> IRM, EEG, exames metabólicos/genéticos, avaliação ocular</li>
+            <li><b>O que descobrimos:</b> PKS (mosaico / i12p)</li>
+          </ul>
+
+          <div class="row">
+            <button class="btn btnPrimary" onclick="scrollTo('doacoes')">Doar agora</button>
+            <button class="btn btnBlue" onclick="shareWhatsApp()">Compartilhar</button>
+          </div>
+
+          <p class="muted" style="margin-top:10px;font-size:13px;">
+            Nosso foco é simples: <b>financiar o início da pesquisa</b> para abrir um caminho real.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- timeline (mantida) -->
     <div class="grid2" style="margin-top:16px;">
       <div class="card">
         <div class="cardInner">
@@ -582,33 +647,28 @@
 
       <div class="card">
         <div class="cardInner">
-          <h3>Assista ao vídeo</h3>
+          <h3>Por que a pesquisa importa</h3>
           <p>
-            O vídeo é o lugar onde a emoção acontece de verdade, porque você vê a Giulia e entende por que pedimos ajuda.
+            Em doenças raras, muitas vezes existe ciência possível — mas falta o que viabiliza tudo: <b>financiamento</b>.
+            Organoides permitem estudar mecanismos com mais segurança e acelerar o caminho para estratégias promissoras.
           </p>
 
-          <div class="videoWrap" style="margin-top:12px;">
-            <iframe
-              src="https://www.youtube.com/embed/VIDEO_ID_AQUI"
-              title="Vídeo da campanha"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen></iframe>
-          </div>
-
-          <p class="muted" style="margin-top:10px;font-size:13px;">
-            Depois, você só troca <b>VIDEO_ID_AQUI</b> pelo ID real do vídeo do YouTube.
-          </p>
+          <ul class="list">
+            <li>Sem promessa falsa — com um plano real</li>
+            <li>Pesquisa pronta para iniciar quando houver recursos</li>
+            <li>Meta clara: <b>US$ 500.000</b></li>
+          </ul>
 
           <div class="row">
-            <button class="btn btnBlue" onclick="scrollTo('doacoes')">Doar (PIX/PayPal/GoFundMe)</button>
-            <button class="btn" onclick="shareWhatsApp()">Compartilhar</button>
+            <button class="btn btnBlue" onclick="scrollTo('pesquisa')">Entender os organoides</button>
+            <button class="btn" onclick="copyLink()">Copiar link</button>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- DIAGNÓSTICO (mais detalhado) -->
+  <!-- DIAGNÓSTICO -->
   <section id="diagnostico">
     <h2 class="sectionTitle">Diagnóstico: Pallister-Killian (PKS)</h2>
     <p class="sectionSub">
@@ -650,7 +710,7 @@
     </div>
   </section>
 
-  <!-- PESQUISA (mais detalhada) -->
+  <!-- PESQUISA -->
   <section id="pesquisa">
     <h2 class="sectionTitle">Pesquisa com organoides cerebrais (explicado melhor)</h2>
     <p class="sectionSub">
@@ -752,7 +812,6 @@
     </p>
 
     <div class="campaigns">
-      <!-- PIX -->
       <div class="camp">
         <div class="campTop">
           <b>🇧🇷 PIX (Brasil)</b>
@@ -773,7 +832,6 @@
         </div>
       </div>
 
-      <!-- PAYPAL -->
       <div class="camp">
         <div class="campTop">
           <b>🌍 PayPal</b>
@@ -790,7 +848,6 @@
         </div>
       </div>
 
-      <!-- GOFUNDME -->
       <div class="camp">
         <div class="campTop">
           <b>💛 GoFundMe</b>
@@ -834,7 +891,6 @@
 
 </main>
 
-<!-- BARRA FIXA -->
 <div class="donateBar" role="region" aria-label="Barra de doação">
   <div class="donateBarInner">
     <div>
@@ -849,11 +905,8 @@
 </div>
 
 <script>
-  // ==============================
-  // CONFIG (links oficiais depois)
-  // ==============================
   const GOAL_USD = 500000;
-  const VALOR_ARRECADADO_USD = 0; // <-- depois você muda aqui
+  const VALOR_ARRECADADO_USD = 0;
 
   const PIX_LINK_QR   = "#";
   const PAYPAL_LINK   = "#";
@@ -865,9 +918,6 @@
 
   const SHARE_TEXT = "Ajude a salvar a Giulia e iniciar a pesquisa em PKS. Link:";
 
-  // ==============================
-  // FUNÇÕES
-  // ==============================
   function scrollTo(id){
     const el = document.getElementById(id);
     if(el) el.scrollIntoView({behavior:"smooth"});
@@ -930,7 +980,6 @@
     document.getElementById("barFill").style.width    = (isFinite(pct) ? pct : 0) + "%";
   }
 
-  // INIT
   document.getElementById("year").textContent = new Date().getFullYear();
   updateProgress();
 </script>
