@@ -859,18 +859,7 @@
       }
     }
 
-    // Language switch
-    (function(){
-      
-      if(!sel) return;
-      sel.addEventListener("change", function(){
-        const v = sel.value;
-        if(v === "pt") window.location.href = "index.html";
-        if(v === "fr") window.location.href = "fr.html";
-        if(v === "en") window.location.href = "en.html";
-        if(v === "es") window.location.href = "es.html";
-      });
-    })();
+  
 
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
